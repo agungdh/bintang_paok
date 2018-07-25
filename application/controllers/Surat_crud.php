@@ -5,7 +5,7 @@ class Surat_crud extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 
-		$this->pustaka->auth($this->session->level, [1]);
+		$this->pustaka->auth($this->session->level, [1, 5]);
 	}
 
 	function index() {
