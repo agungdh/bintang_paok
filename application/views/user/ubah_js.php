@@ -3,8 +3,12 @@ $(function() {
     $(".select2").select2();
 });
 
-$('#simpan').click(function(){
-  $("input[type='submit']").click();
+$('#simpanu').click(function(){
+  $("#fu").submit();
+});
+
+$('#simpanp').click(function(){
+  $("#form_ubah_password").submit();
 });
 
 $('#form_ubah_password').submit(function() {

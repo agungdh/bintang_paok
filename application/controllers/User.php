@@ -43,6 +43,10 @@ class User extends CI_Controller {
 			}
 		}
 
+		if ($data['level'] != 4) {
+			unset($data['bidang_id']);
+		}
+
 		$this->db->insert('user', $data);
 
 		redirect(base_url('user'));
@@ -55,6 +59,10 @@ class User extends CI_Controller {
 
 		foreach ($this->input->post('where') as $key => $value) {
 			$where[$key] = $value;
+		}
+
+		if ($data['level'] != 4) {
+			$data['bidang_id'] = null;
 		}
 
 		$this->db->update('user', $data, $where);

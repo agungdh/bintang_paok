@@ -27,6 +27,30 @@
           </div>
 
           <div class="form-group">
+            <label class="control-label">Level</label>
+            <select class="form-control select2" required name="data[level]">
+              <option value="1">Administrator</option>
+              <option value="2">Kepala Dinas</option>
+              <option value="3">Sekertaris</option>
+              <option value="4">Kepala Bidang</option>
+              <option value="5">Operator</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label">Kepala Bidang</label>
+            <select class="form-control select2" name="data[bidang_id]">
+              <?php
+              foreach ($this->db->get('bidang')->result() as $item) {
+                ?>
+                <option value="<?php echo $item->id; ?>"><?php echo $item->bidang; ?></option>
+                <?php
+              }
+              ?>
+            </select>
+          </div>
+
+          <div class="form-group">
             <label class="control-label">Password</label>
             <input class="form-control" type="password" required placeholder="Masukan Password" name="data[password]">
           </div>

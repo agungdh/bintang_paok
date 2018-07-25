@@ -12,7 +12,7 @@
     <div class="tile">
       <h3 class="tile-title">Ubah User</h3>
       <div class="tile-body">
-        <form method="post" action="<?php echo base_url('user/aksi_ubah'); ?>">
+        <form method="post" action="<?php echo base_url('user/aksi_ubah'); ?>" id="fu">
           
           <input type="hidden" name="where[id]" value="<?php echo $data['user']->id; ?>">
 
@@ -26,9 +26,39 @@
             <input class="form-control" type="text" required placeholder="Masukan Nama" name="data[nama]" value="<?php echo $data['user']->nama; ?>">
           </div>
 
+          <div class="form-group">
+            <label class="control-label">Level</label>
+            <select class="form-control select2" required name="data[level]">
+              <option <?php echo $data['user']->level == 1 ? 'selected' : null; ?> value="1">Administrator</option>
+              <option <?php echo $data['user']->level == 2 ? 'selected' : null; ?> value="2">Kepala Dinas</option>
+              <option <?php echo $data['user']->level == 3 ? 'selected' : null; ?> value="3">Sekertaris</option>
+              <option <?php echo $data['user']->level == 4 ? 'selected' : null; ?> value="4">Kepala Bidang</option>
+              <option <?php echo $data['user']->level == 5 ? 'selected' : null; ?> value="5">Operator</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label">Kepala Bidang</label>
+            <select class="form-control select2" name="data[bidang_id]">
+              <?php
+              foreach ($this->db->get('bidang')->result() as $item) {
+                if ($item->id == $data['user']->bidang_id) {
+                  ?>
+                  <option selected value="<?php echo $item->id; ?>"><?php echo $item->bidang; ?></option>
+                  <?php
+                } else {
+                  ?>
+                  <option value="<?php echo $item->id; ?>"><?php echo $item->bidang; ?></option>
+                  <?php
+                }
+              }
+              ?>
+            </select>
+          </div>
+
           </div>
           <div class="tile-footer">
-            <button id="simpan" class="btn btn-primary" type="button"><i class="fa fa-fw fa-lg fa-check-circle"></i>Simpan</button>
+            <button id="simpanu" class="btn btn-primary" type="button"><i class="fa fa-fw fa-lg fa-check-circle"></i>Simpan</button>
             &nbsp;&nbsp;&nbsp;
             <a class="btn btn-secondary" href="<?php echo base_url('user'); ?>"><i class="fa fa-fw fa-lg fa-times-circle"></i>Batal</a> <input type="submit" style="visibility: hidden;">
           </div>
@@ -56,7 +86,7 @@
 
           </div>
           <div class="tile-footer">
-            <button id="simpan" class="btn btn-primary" type="button"><i class="fa fa-fw fa-lg fa-check-circle"></i>Simpan</button>
+            <button id="simpanp" class="btn btn-primary" type="button"><i class="fa fa-fw fa-lg fa-check-circle"></i>Simpan</button>
             &nbsp;&nbsp;&nbsp;
             <a class="btn btn-secondary" href="<?php echo base_url('user'); ?>"><i class="fa fa-fw fa-lg fa-times-circle"></i>Batal</a> <input type="submit" style="visibility: hidden;">
           </div>
