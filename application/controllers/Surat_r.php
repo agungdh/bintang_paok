@@ -24,7 +24,9 @@ class Surat_r extends CI_Controller {
 
 		$this->db->insert('proses', ['waktu_proses' => date('Y-m-d H:i:s')]);
 
-		$this->db->update('surat', ['proses_id' => $this->db->insert_id()], ['id' => $id]);
+		if ($this->db->get_where('disposisi', ['surat_id' => $surat->id])->result() != null ) {
+			$this->db->update('surat', ['proses_id' => $this->db->insert_id()], ['id' => $id]);
+		}
 
 		redirect(base_url('surat_r'));
 	}
@@ -125,10 +127,33 @@ class Surat_r extends CI_Controller {
 	}
 
 	function ajax_sekertaris() {
-	    
+		$query = $this->db->query('SELECT *
+								FROM disposisi d, surat s
+								WHERE d.proses_id IS NULL
+								AND d.disposisi_id IS NULL
+								AND d.bidang_id IS NULL
+								AND d.surat_id = s.id')->result();
+	    foreach ($query as $item) {
+	      ?>
+	      <tr>
+	        <td><?php echo $this->pustaka->tanggal_waktu_indo($item->waktu_terima); ?></td>
+	        <td><?php echo $item->nosurat; ?></td>
+	        <td><?php echo $item->pengirim; ?></td>
+	        <td><?php echo $item->perihal; ?></td>
+	        <td><a href="<?php echo base_url('download/file/' . $item->id); ?>"><?php echo $item->nama_file; ?></a></td>
+	        <td>Pesan Disposisi (<?php echo $item->isi; ?>)</td>
+	        <td>
+	          <div class="btn-group">
+	          <a class="btn btn-primary" href="#" onclick="disposisi('<?php echo $item->id; ?>')" data-toggle="tooltip" title="Disposisi"><i class="fa fa-share"></i></a>
+	          <a class="btn btn-primary" href="#" onclick="proses('<?php echo $item->id; ?>')" data-toggle="tooltip" title="Proses"><i class="fa fa-cog"></i></a>
+	        </div>
+	        </td>
+	      </tr>
+	      <?php
+	    }
 	}
 
-	function ajax_kb() {
+	function ajax_kb($id) {
 	    
 	}
 
