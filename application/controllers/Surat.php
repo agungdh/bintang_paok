@@ -44,13 +44,16 @@ class Surat extends CI_Controller {
 		$berkas = $_FILES['berkas'];
 
 		$data['nama_file'] = $berkas['name'];
-		$data['waktu'] = date('Y-m-d H:i:s');
-		$data['bidang_id'] = 1;
+		$waktu = date('Y-m-d H:i:s');
+		$data['waktu'] = $waktu;
+		$data['bidang_id'] = 4;
 		$data['selesai'] = 't';
 
 		$this->db->insert('surat', $data);
 
 		move_uploaded_file($berkas['tmp_name'], 'uploads/surat/' . $this->db->insert_id());
+
+		$this->db->insert('disposisi', ['surat_id' => $this->db->insert_id(), 'waktu' => $waktu, 'keterangan' => 'Surat Masuk', 'bidang_id' => 4]);
 
 		redirect(base_url('surat'));
 	}
