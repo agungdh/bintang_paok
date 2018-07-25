@@ -27,30 +27,8 @@
           </div>
 
           <div class="form-group">
-            <label class="control-label">Level</label>
-            <?php
-                switch ($data['user']->level) {
-                  case '1':
-                    $level = 'Administrator';
-                    break;
-                  case '2':
-                    $level = 'Kepala Dinas';
-                    break;
-                  case '3':
-                    $level = 'Sekertaris';
-                    break;
-                  case '4':
-                    $level = 'Kepala Bidang (' . $this->db->get_where('bidang', ['id' => $data['user']->bidang_id])->row()->bidang . ')';
-                    break;
-                  case '5':
-                    $level = 'Operator';
-                    break;
-                  
-                  default:
-                    break;
-                }
-                ?>
-            <input class="form-control" required readonly type="text" placeholder="Masukan Level" name="cdata[level]" value="<?php echo $level; ?>">
+            <label class="control-label">Bidang</label>
+            <input class="form-control" required readonly type="text" placeholder="Masukan Bidang" value="<?php echo $this->db->get_where('bidang', ['id' => $data['user']->bidang_id])->row()->bidang; ?>">
           </div>
 
           <div class="form-group">
