@@ -125,55 +125,11 @@ class Surat_r extends CI_Controller {
 	}
 
 	function ajax_sekertaris() {
-	    $query = $this->db->query('SELECT *
-	                              FROM surat
-	                              WHERE id NOT IN (SELECT surat_id
-	                                               FROM disposisi)
-	                              AND id NOT IN (SELECT surat_id
-	                                               FROM proses)')->result();
-	    foreach ($query as $item) {
-	      ?>
-	      <tr>
-	        <td><?php echo $item->waktu_terima; ?></td>
-	        <td><?php echo $item->nosurat; ?></td>
-	        <td><?php echo $item->pengirim; ?></td>
-	        <td><?php echo $item->perihal; ?></td>
-	        <td><a href="<?php echo base_url('download/file/' . $item->id); ?>"><?php echo $item->nama_file; ?></a></td>
-	        <td>
-	          <div class="btn-group">
-	          <a class="btn btn-primary" href="<?php echo base_url('surat_r/disposisi/' . $item->id); ?>" data-toggle="tooltip" title="Disposisi"><i class="fa fa-share"></i></a>
-	          <a class="btn btn-primary" href="<?php echo base_url('surat_r/proses/' . $item->id); ?>" data-toggle="tooltip" title="Proses"><i class="fa fa-cog"></i></a>
-	        </div>
-	        </td>
-	      </tr>
-	      <?php
-	    }
+	    
 	}
 
 	function ajax_kb() {
-	    $query = $this->db->query('SELECT *
-	                              FROM surat
-	                              WHERE id NOT IN (SELECT surat_id
-	                                               FROM disposisi)
-	                              AND id NOT IN (SELECT surat_id
-	                                               FROM proses)')->result();
-	    foreach ($query as $item) {
-	      ?>
-	      <tr>
-	        <td><?php echo $item->waktu_terima; ?></td>
-	        <td><?php echo $item->nosurat; ?></td>
-	        <td><?php echo $item->pengirim; ?></td>
-	        <td><?php echo $item->perihal; ?></td>
-	        <td><a href="<?php echo base_url('download/file/' . $item->id); ?>"><?php echo $item->nama_file; ?></a></td>
-	        <td>
-	          <div class="btn-group">
-	          <a class="btn btn-primary" href="<?php echo base_url('surat_r/disposisi/' . $item->id); ?>" data-toggle="tooltip" title="Disposisi"><i class="fa fa-share"></i></a>
-	          <a class="btn btn-primary" href="<?php echo base_url('surat_r/proses/' . $item->id); ?>" data-toggle="tooltip" title="Proses"><i class="fa fa-cog"></i></a>
-	        </div>
-	        </td>
-	      </tr>
-	      <?php
-	    }
+	    
 	}
 
 }
