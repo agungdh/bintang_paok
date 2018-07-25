@@ -61,9 +61,17 @@ $now = date('YmdHis');
           case 1:
             $this->load->view('template/menu_admin'); 
             break;
+          case 2:
+          case 3:
+          case 4:
+            $this->load->view('template/menu_ksb'); 
+            break;
+          case 5:
+            $this->load->view('template/menu_operator'); 
+            break;
                     
           default:
-            redirect(base_url('logout'));
+            redirect(base_url());
             break;
         }
         ?>
