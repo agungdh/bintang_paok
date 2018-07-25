@@ -17,4 +17,12 @@ class Disposisi extends CI_Controller {
 		$this->load->view('template/template', $data);
 	}
 
+	function proses($surat_id) {
+		$this->db->insert('proses', ['surat_id' => $surat_id, 'waktu' => date('Y-m-d H:i:s'), 'bidang_id' => $this->session->bidang_id]);
+
+		$this->db->update('surat', ['bidang_id' => $this->session->bidang_id], ['id' => $surat_id]);
+
+		redirect(base_url('proses'));
+	}
+
 }

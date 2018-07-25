@@ -33,8 +33,16 @@
                                         WHERE d.surat_id = s.id
                                         AND s.selesai = ?
                                         AND d.bidang_id = ?
+                                        AND s.id NOT IN (
+                                          SELECT s.id
+                                          FROM proses p, surat s
+                                          WHERE p.surat_id = s.id
+                                          AND s.selesai = ?
+                                          AND p.bidang_id = ?
+                                          ORDER BY p.id DESC
+                                        )
                                         ORDER BY d.id DESC
-                                        LIMIT 1', ['t', $this->session->bidang_id])->result();
+                                        LIMIT 1', ['t', $this->session->bidang_id, 't', $this->session->bidang_id])->result();
             foreach ($query as $item) {
               if ($this->db->get_where('proses', ['surat_id' => $item->id])->row() != null) {
                 
@@ -53,7 +61,7 @@
                 <td>
                   <div class="btn-group">
                   <a class="btn btn-primary" href="<?php echo base_url('disposisi/disposisi/' . $item->id); ?>" data-toggle="tooltip" title="Disposisi"><i class="fa fa-share"></i></a>
-                  <a class="btn btn-primary" href="#" onclick="proses('<?php echo $item->id; ?>')" data-toggle="tooltip" title="Proses"><i class="fa fa-cog"></i></a>
+                  <a class="btn btn-primary" href="#" onclick="proses('<?php echo $item->surat_id; ?>')" data-toggle="tooltip" title="Proses"><i class="fa fa-cog"></i></a>
                 </div>
                 </td>
               </tr>
