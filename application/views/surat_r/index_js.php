@@ -37,4 +37,22 @@ function selesaiproses(id) {
        }
     });
 }
+
+function disposisi(id) {
+	$.get("<?php echo base_url('surat_r/ajax_disposisi/'); ?>" + id, function(data, status){
+		var data = JSON.parse(data);
+
+		$("#nosurat").html(data[0]);		
+		$("#pengirim").html(data[1]);		
+		$("#perihal").html(data[2]);		
+		$("#surat_id").val(data[3]);		
+
+
+		$(".modal").modal();
+    });
+}
+
+function submitdisposisi() {
+	$("form").submit();
+}
 </script>
