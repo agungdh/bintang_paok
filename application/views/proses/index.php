@@ -1,10 +1,10 @@
 <div class="app-title">
   <div>
-    <h1><i class="fa fa-book"></i> Disposisi Surat</h1>
+    <h1><i class="fa fa-book"></i> Proses Surat</h1>
   </div>
   <ul class="app-breadcrumb breadcrumb">
     <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-    <li class="breadcrumb-item">Disposisi Surat</li>
+    <li class="breadcrumb-item">Proses Surat</li>
   </ul>
 </div>
 <div class="row">
@@ -12,7 +12,7 @@
     <div class="tile">
       <div class="tile-body">
         <div class="tile-title-w-btn">
-          <h3 class="title">Data Disposisi Surat</h3>
+          <h3 class="title">Data Proses Surat</h3>
         </div>
         <table class="table table-hover table-bordered datatable" >
           <thead>
@@ -28,21 +28,12 @@
           </thead>
           <tbody>
             <?php
-            $query = $this->db->query('SELECT *, d.id disposisi_id
-                                        FROM disposisi d, surat s
-                                        WHERE d.surat_id = s.id
-                                        AND s.selesai = ?
-                                        AND d.bidang_id = ?
-                                        AND s.id NOT IN (
-                                          SELECT s.id
+            $query = $this->db->query('SELECT s.id
                                           FROM proses p, surat s
                                           WHERE p.surat_id = s.id
                                           AND s.selesai = ?
                                           AND p.bidang_id = ?
                                           ORDER BY p.id DESC
-                                          GROUP BY s.id
-                                        )
-                                        ORDER BY d.id DESC
                                         GROUP BY s.id', ['t', $this->session->bidang_id, 't', $this->session->bidang_id])->result();
             foreach ($query as $item) {
               if ($this->db->get_where('proses', ['surat_id' => $item->id])->row() != null) {
