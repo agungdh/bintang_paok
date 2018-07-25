@@ -24,7 +24,10 @@
           </thead>
           <tbody>
             <?php
-            foreach ($this->db->get('bidang')->result() as $item) {
+            $query = $this->db->query('SELECT *
+                              FROM bidang
+                              WHERE id > 10')->result();
+            foreach ($query as $item) {
               ?>
               <tr>
                 <td><?php echo $item->bidang; ?></td>

@@ -1,9 +1,0 @@
-<li><a class="app-menu__item" href="<?php echo base_url('dashboard'); ?>"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
-
-<li><a class="app-menu__item" href="<?php echo base_url('bidang'); ?>"><i class="app-menu__icon fa fa-book"></i><span class="app-menu__label">Bidang</span></a></li>
-
-<li><a class="app-menu__item" href="<?php echo base_url('surat_crud'); ?>"><i class="app-menu__icon fa fa-book"></i><span class="app-menu__label">Surat</span></a></li>
-
-<li><a class="app-menu__item" href="<?php echo base_url('user'); ?>"><i class="app-menu__icon fa fa-users"></i><span class="app-menu__label">User</span></a></li>
-
-<li><a class="app-menu__item" href="<?php echo base_url('config'); ?>"><i class="app-menu__icon fa fa-gears"></i><span class="app-menu__label">Config</span></a></li>

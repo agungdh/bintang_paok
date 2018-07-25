@@ -56,25 +56,7 @@ $now = date('YmdHis');
         </div>
       </div>
       <ul class="app-menu">
-        <?php
-        switch ($this->session->level) {
-          case 1:
-            $this->load->view('template/menu_admin'); 
-            break;
-          case 2:
-          case 3:
-          case 4:
-            $this->load->view('template/menu_ksb'); 
-            break;
-          case 5:
-            $this->load->view('template/menu_operator'); 
-            break;
-                    
-          default:
-            redirect(base_url());
-            break;
-        }
-        ?>
+        <?php $this->load->view('template/menu'); ?>
       </ul>
     </aside>
     <main class="app-content">
