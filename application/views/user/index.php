@@ -20,7 +20,6 @@
             <tr>
               <th>Username</th>
               <th>Nama</th>
-              <th>Level</th>
               <th>Bidang</th>
               <th>Proses</th>
             </tr>
@@ -32,29 +31,6 @@
               <tr>
                 <td><?php echo $item->username; ?></td>
                 <td><?php echo $item->nama; ?></td>
-                <?php
-                switch ($item->level) {
-                  case '1':
-                    $level = 'Administrator';
-                    break;
-                  case '2':
-                    $level = 'Kepala Dinas';
-                    break;
-                  case '3':
-                    $level = 'Sekertaris';
-                    break;
-                  case '4':
-                    $level = 'Kepala Bidang';
-                    break;
-                  case '5':
-                    $level = 'Operator';
-                    break;
-                  
-                  default:
-                    break;
-                }
-                ?>
-                <td><?php echo $level; ?></td>
                 <td><?php echo $item->bidang_id != null ? $this->db->get_where('bidang', ['id' => $item->bidang_id])->row()->bidang : null; ?></td>
                 <td>
                   <div class="btn-group">

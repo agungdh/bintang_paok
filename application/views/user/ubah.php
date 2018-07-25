@@ -27,18 +27,7 @@
           </div>
 
           <div class="form-group">
-            <label class="control-label">Level</label>
-            <select class="form-control select2" required name="data[level]">
-              <option <?php echo $data['user']->level == 1 ? 'selected' : null; ?> value="1">Administrator</option>
-              <option <?php echo $data['user']->level == 2 ? 'selected' : null; ?> value="2">Kepala Dinas</option>
-              <option <?php echo $data['user']->level == 3 ? 'selected' : null; ?> value="3">Sekertaris</option>
-              <option <?php echo $data['user']->level == 4 ? 'selected' : null; ?> value="4">Kepala Bidang</option>
-              <option <?php echo $data['user']->level == 5 ? 'selected' : null; ?> value="5">Operator</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label class="control-label">Kepala Bidang</label>
+            <label class="control-label">Bidang</label>
             <select class="form-control select2" name="data[bidang_id]">
               <?php
               foreach ($this->db->get('bidang')->result() as $item) {

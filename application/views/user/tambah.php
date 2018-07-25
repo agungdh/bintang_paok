@@ -13,8 +13,6 @@
       <h3 class="tile-title">Tambah User</h3>
       <div class="tile-body">
         <form method="post" action="<?php echo base_url('user/aksi_tambah'); ?>">
-          
-          <input type="hidden" name="data[level]" value="1">
 
           <div class="form-group">
             <label class="control-label">Username</label>
@@ -27,18 +25,7 @@
           </div>
 
           <div class="form-group">
-            <label class="control-label">Level</label>
-            <select class="form-control select2" required name="data[level]">
-              <option value="1">Administrator</option>
-              <option value="2">Kepala Dinas</option>
-              <option value="3">Sekertaris</option>
-              <option value="4">Kepala Bidang</option>
-              <option value="5">Operator</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label class="control-label">Kepala Bidang</label>
+            <label class="control-label">Bidang</label>
             <select class="form-control select2" name="data[bidang_id]">
               <?php
               foreach ($this->db->get('bidang')->result() as $item) {
