@@ -46,7 +46,7 @@ class Surat extends CI_Controller {
 		$data['nama_file'] = $berkas['name'];
 		$data['waktu'] = date('Y-m-d H:i:s');
 		$data['bidang_id'] = 1;
-		$data['selesai'] = 'n';
+		$data['selesai'] = 't';
 
 		$this->db->insert('surat', $data);
 
@@ -68,6 +68,15 @@ class Surat extends CI_Controller {
 			$where[$key] = $value;
 		}
 
+		$berkas = $_FILES['berkas'];
+
+		if ($berkas['size'] != 0) {
+			$data['nama_file'] = $berkas['name'];
+
+			move_uploaded_file($berkas['tmp_name'], 'uploads/surat/' . $where['id']);			
+		}
+
+
 		$this->db->update('surat', $data, $where);
 
 		redirect(base_url('surat'));
@@ -75,6 +84,8 @@ class Surat extends CI_Controller {
 
 	function aksi_hapus($id) {
 		$this->db->delete('surat', ['id' => $id]);
+
+		unlink('uploads/surat/' . $id);
 
 		redirect(base_url('surat'));
 	}
