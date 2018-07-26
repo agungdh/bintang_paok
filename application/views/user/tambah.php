@@ -25,6 +25,17 @@
           </div>
 
           <div class="form-group">
+            <label class="control-label">Level</label>
+            <select class="form-control select2" name="data[level]">
+              <option value="a">Administrator</option>
+              <option value="kd">Kepala Dinas</option>
+              <option value="s">Sekertaris</option>
+              <option value="kb">Kepala Bidang</option>
+              <option value="o">Operator</option>
+            </select>
+          </div>
+
+          <div class="form-group">
             <label class="control-label">Bidang</label>
             <select class="form-control select2" name="data[bidang_id]">
               <?php

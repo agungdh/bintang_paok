@@ -20,7 +20,7 @@
             <tr>
               <th>Username</th>
               <th>Nama</th>
-              <th>Bidang</th>
+              <th>Level</th>
               <th>Proses</th>
             </tr>
           </thead>
@@ -31,7 +31,30 @@
               <tr>
                 <td><?php echo $item->username; ?></td>
                 <td><?php echo $item->nama; ?></td>
-                <td><?php echo $item->bidang_id != null ? $this->db->get_where('bidang', ['id' => $item->bidang_id])->row()->bidang : null; ?></td>
+                <?php
+                switch ($item->level) {
+                  case 'a':
+                    $level = "Administrator";
+                    break;
+                  case 'o':
+                    $level = "Operator";
+                    break;
+                  case 'kd':
+                    $level = "Kepala Dinas";
+                    break;
+                  case 's':
+                    $level = "Sekertaris";
+                    break;
+                  case 'kb':
+                    $level = "Kepala Bidang (" . $this->db->get_where('bidang', ['id' => $item->bidang_id])->row()->bidang . ')';
+                    break;
+                  
+                  default:
+                    # code...
+                    break;
+                }
+                ?>
+                <td><?php echo $level; ?></td>
                 <td>
                   <div class="btn-group">
                   <a class="btn btn-primary" href="<?php echo base_url('user/ubah/' . $item->id); ?>" data-toggle="tooltip" title="Ubah"><i class="fa fa-edit"></i></a>

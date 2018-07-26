@@ -25,8 +25,7 @@
           <tbody>
             <?php
             $query = $this->db->query('SELECT *
-                              FROM bidang
-                              WHERE id > 10')->result();
+                              FROM bidang')->result();
             foreach ($query as $item) {
               ?>
               <tr>

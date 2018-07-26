@@ -27,6 +27,17 @@
           </div>
 
           <div class="form-group">
+            <label class="control-label">Level</label>
+            <select class="form-control select2" name="data[level]">
+              <option <?php echo $data['user']->level == 'a' ? 'selected' : null; ?> value="a">Administrator</option>
+              <option <?php echo $data['user']->level == 'kd' ? 'selected' : null; ?> value="kd">Kepala Dinas</option>
+              <option <?php echo $data['user']->level == 's' ? 'selected' : null; ?> value="s">Sekertaris</option>
+              <option <?php echo $data['user']->level == 'kb' ? 'selected' : null; ?> value="kb">Kepala Bidang</option>
+              <option <?php echo $data['user']->level == 'o' ? 'selected' : null; ?> value="o">Operator</option>
+            </select>
+          </div>
+
+          <div class="form-group">
             <label class="control-label">Bidang</label>
             <select class="form-control select2" name="data[bidang_id]">
               <?php
